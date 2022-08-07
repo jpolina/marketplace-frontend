@@ -9,7 +9,7 @@ import NewAd from './pages/NewAd'
 import MyAds from './pages/MyAds'
 import Categories from './pages/Categories'
 import BrowseAds from './pages/BrowseAds'
-
+import AccountForm from './pages/AccountForm'
 
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
               <Route path='/newad' element={<NewAd />} />
               <Route path='/my-ads' element={<MyAds />} />
               <Route path='/categories' element={<Categories />}/>
+              <Route path='/account-settings' element={<AccountForm />}/>
             </Routes>
           </div>
         </Router>

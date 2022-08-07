@@ -55,7 +55,7 @@ const Header = () => {
                                     </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                    <Link to='/' className='nav-link'>
+                                    <Link to='/account-settings' className='nav-link'>
                                         <FaCog /> Account Settings
                                     </Link>
                                 </NavDropdown.Item>

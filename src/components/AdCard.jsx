@@ -2,19 +2,25 @@ import React, {useEffect, useState} from 'react'
 import {Card, Button, Modal} from 'react-bootstrap'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import AdForm from './AdForm';
 
 const image = require("../img/adpic.png")
 const API_URL = '/api/'
 
 
 function AdCard(props) {
+  const [editing, setEditing] = useState(false);
   const [show, setShow] = useState(false)
   const [isOwner, setIsOwner] = useState(false)
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    setEditing(false)
+  };
   const handleEdit = () => {
-    console.log('edit')
+    setEditing(true);
   }
+
   const handleDelete = async () => {
     const token = JSON.parse(localStorage.getItem('seller')).token
     console.log(props.ad._id)
@@ -63,27 +69,38 @@ function AdCard(props) {
             
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <div className='d-flex justify-content-between'>
-              <div>
-                <img src={props.ad.imageUrl} className='rounded' style={{maxWidth:'100%', maxHeight:'500px', objectFit:'contain', margin:'0px'}} alt={props.ad.title + ' image'}/>
+          {editing? (<>
+            <Modal.Body>
+              <h3>Edit Ad</h3>
+
+              <AdForm operation='put' ad={props.ad}/>
+            </Modal.Body>
+          </>):(
+            <>
+              <Modal.Body>
+              <div className='d-flex justify-content-between'>
+                <div>
+                  <img src={props.ad.imageUrl} className='rounded' style={{maxWidth:'100%', maxHeight:'500px', objectFit:'contain', margin:'0px'}} alt={props.ad.title + ' image'}/>
+                </div>
+                <div className='mx-3 bg-light p-3 rounded'>
+                  <p>Description: {props.ad.description}</p>
+                  <p>Location: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>
+                  <p>Condition: {props.ad.condition}</p>
+
+
+
+                  <p>Seller: {props.ad.seller.name}</p>
+                  <p>Seller's email: {props.ad.seller.email}</p>
+                  {props.ad.seller.phone!='false' ? (
+                  <p>Seller's phone number: {props.ad.seller.phone}</p>)
+                    : (<></>)
+                  }
+                </div>
               </div>
-              <div className='mx-3 bg-light p-3 rounded'>
-                <p>Description: {props.ad.description}</p>
-                <p>Location: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>
-                <p>Condition: {props.ad.condition}</p>
-
-
-
-                <p>Seller: {props.ad.seller.name}</p>
-                <p>Seller's email: {props.ad.seller.email}</p>
-                {props.ad.seller.phone!='false' ? (
-                <p>Seller's phone number: {props.ad.seller.phone}</p>)
-                  : (<></>)
-                }
-              </div>
-            </div>
-          </Modal.Body>
+            </Modal.Body>
+            </>
+          )}
+          
           <Modal.Footer>
             {isOwner ? (<>
               <Button variant="primary" onClick={handleEdit}>Edit</Button>
