@@ -10,6 +10,8 @@ import MyAds from './pages/MyAds'
 import Categories from './pages/Categories'
 import BrowseAds from './pages/BrowseAds'
 import AccountForm from './pages/AccountForm'
+import NotFound from './pages/NotFound'
+import Category from './pages/Category'
 
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
     <>
       <Router>
           <Header />
-          <div className='container-xxl'>
+          <div className='container'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/ads' element={<BrowseAds />} />
@@ -27,6 +29,12 @@ function App() {
               <Route path='/my-ads' element={<MyAds />} />
               <Route path='/categories' element={<Categories />}/>
               <Route path='/account-settings' element={<AccountForm />}/>
+              <Route path='/category/:id' element={<Category />}/>
+
+
+
+              <Route path='*' element={<NotFound />}/>
+
             </Routes>
           </div>
         </Router>

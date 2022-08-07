@@ -12,7 +12,9 @@ const register = async (sellerData) => {
     if(response.data) {
         localStorage.setItem('seller', JSON.stringify(response.data))
     }
+    toast.success(response.data.message)
     return response.data
+
 }
 
 // Login seller
@@ -22,6 +24,10 @@ const login = async (sellerData) => {
     if(response.data) {
         localStorage.setItem('seller', JSON.stringify(response.data))
     }
+    toast.success(response.data.message)
+    // console.log(response.data.message)
+
+
 
     return response.data
 }
@@ -29,6 +35,7 @@ const login = async (sellerData) => {
 // Logout seller
 const logout = () => {
     localStorage.removeItem('seller')
+    
 }
 
 const authService = {

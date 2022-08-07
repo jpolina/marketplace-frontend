@@ -110,13 +110,13 @@ function AdForm(props) {
 
                         <input type="text" className="form-control" id='title' name='title' value={title} placeholder='Enter the title' onChange={onChange} required/>
                     </div>
-                    <div className="input-group my-3">
-                        {/* <label htmlFor="price" className>Price </label> */}
 
-
+                    <label htmlFor="price">Price </label>
+                    <div className="input-group mb-3">
                         <span className="input-group-text">$</span>
                         <input type="number" className="form-control" id='price' name='price' value={price} placeholder='Enter the price' onChange={onChange} required/>
                     </div>
+                    
                     <div className="form-group my-3">
                     <label htmlFor="description" className>Description </label>
                         <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the description' onChange={onChange} required/>
