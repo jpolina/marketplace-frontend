@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import Spinner from '../components/Spinner';
 import AdCard from '../components/AdCard';
+import CategoryForm from '../components/CategoryForm';
 import '../css/grid.css'
+import { toast } from 'react-toastify';
+
 const API_URL = '/api/'
 
 
@@ -14,13 +17,31 @@ function Category() {
     const [category, setCategory] = useState({})
     const [ads, setAds] = useState([])
     const [isSeller, setIsSeller] = useState(false)
+    const [isEditing, setIsEditing] = useState(false)
+    const navigate = useNavigate();
 
     const {seller} = useSelector((state) => (state.auth))
     const handleEdit = () => {
-        console.log('edit!!')
+        setIsEditing(true)
     }
-    const handleDelete = () => {
-        console.log('delete!!')
+    const handleDelete = async () => {
+        const token = JSON.parse(localStorage.getItem('seller')).token
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        try {
+            const response = await axios.delete(API_URL+`category/${id}`, config)
+            toast.success(response.data.message)
+            setTimeout(()=>{
+                navigate('/categories')
+                window.location.reload();
+            }, 2000)
+        } catch (err) {
+            toast.error(err.response.data.error)
+
+        }
     }
 
     useEffect(()=> {
@@ -53,10 +74,16 @@ function Category() {
                 })}
             </div>
         </>
+
         {isSeller? (
         <>
             <button className="btn btn-secondary m-3" onClick={handleEdit}>Edit Category</button>
             <button className="btn btn-danger" onClick={handleDelete}>Delete Category</button>
+        </>) : (<></>)}
+
+        {isEditing? (<>
+            <CategoryForm category={category} operation='put'/>
+        
         </>) : (<></>)}
     </>
     )

@@ -49,7 +49,7 @@ function AdCard(props) {
   },[])
   return (
     <>
-        <Card style={{ margin:'10px', height:'20rem'}} className='shadow-sm bg-white rounded' onClick = {handleShow}>
+        <Card style={{ margin:'10px', height:'20rem', cursor:'pointer'}} className='shadow-sm bg-white rounded' onClick = {handleShow}>
           
           <Card.Img variant="top" src={props.ad.imageUrl} className='mx-auto' style={{maxHeight:'100%', maxWidth: '100%', objectFit:'contain', margin:'0', zIndex:'100'}} alt={props.ad.title + ' image'}/>
           <div className='mt-auto card-footer w-100 m-0 position-absolute bottom-0 bg-light' style={{zIndex:'100'}}>

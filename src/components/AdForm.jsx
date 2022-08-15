@@ -78,6 +78,7 @@ function AdForm(props) {
                  response = await axios.put(API_URL+`ad/${props.ad._id}`, finalData, config)
             } else response = await axios.post(API_URL+'ad', finalData, config);
             toast.success(response.data.message)
+            navigate('/my-ads')
         } catch (err) {
             toast.error(err.response.data.message)
         }

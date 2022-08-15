@@ -45,14 +45,16 @@ function CategoryForm(props) {
                 Authorization: `Bearer ${token}`
             }
         }
-        console.log(formData)
         try {
             let response;
             if (props.operation=='put') {
-                 response = await axios.put(API_URL+`ad/${props.category._id}`, formData, config)
+                response = await axios.put(API_URL+`category/${props.category._id}`, formData, config)
             } else response = await axios.post(API_URL+'category', formData, config);
             toast.success(response.data.message)
-            window.location.reload();
+            setTimeout(()=> {
+                navigate('/categories')
+            }, 2000)
+
         } catch (err) {
             toast.error(err.response.data.message)
         }
@@ -67,7 +69,16 @@ function CategoryForm(props) {
                     <div className="form-group my-3">
                         <label htmlFor="name" className='text-muted'>Name </label>
 
-                        <input type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the category name' onChange={onChange} required/>
+                        {props.operation=='put'?(
+                            <>
+                                <input type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the new category name' onChange={onChange} required/>
+                            </>
+                        ):(
+                            <>
+                                <input type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the category name' onChange={onChange} required/>
+                            </>
+                        )}
+
                     </div>
                     <div className="form-group my-2">
                         <button type='submit' className="btn btn-primary">Submit</button>

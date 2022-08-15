@@ -41,7 +41,7 @@ const Header = () => {
                             <Link to='/categories' className='nav-link'>
                                 <FaThLarge /> Browse Categories
                             </Link>
-                            <Link to='/newad' className='nav-link'>
+                            <Link to='/new-ad' className='nav-link'>
                                 <FaPlusCircle /> Post an Ad
                             </Link>
 

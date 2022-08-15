@@ -25,11 +25,12 @@ function App() {
               <Route path='/ads' element={<BrowseAds />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-              <Route path='/newad' element={<NewAd />} />
+              <Route path='/new-ad' element={<NewAd />} />
               <Route path='/my-ads' element={<MyAds />} />
               <Route path='/categories' element={<Categories />}/>
               <Route path='/account-settings' element={<AccountForm />}/>
               <Route path='/category/:id' element={<Category />}/>
+
 
 
 

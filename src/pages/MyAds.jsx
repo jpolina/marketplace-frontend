@@ -42,7 +42,7 @@ function MyAds() {
                     {ads.map((ad) => {
                     return (
                         <div className=''>
-                            <AdCard key={ad._id} ad={ad}/>
+                            <AdCard key={ad.id} ad={ad}/>
                         </div>
                     )
                     })}

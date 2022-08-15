@@ -38,7 +38,7 @@ function Categories() {
                 <div className='d-flex w-100 flex-wrap'>
                     {categories.map((category)=>{
                         return (
-                            <div key={category._id} className='m-2 bg-light rounded shadow-sm p-3' name={category._id} onClick={()=>{navigate(`/category/${category._id}`)}}>
+                            <div key={category._id} style={{cursor:"pointer"}} className='m-2 bg-light rounded shadow-sm p-3' name={category._id} onClick={()=>{navigate(`/category/${category._id}`)}}>
                                 {category.name}
                             </div>
                         )
