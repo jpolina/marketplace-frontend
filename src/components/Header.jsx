@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useEffect } from 'react';
+import { getByTitle } from '@testing-library/react';
 
 //https://i.imgur.com/KHrRhWX.jpg
 
@@ -22,8 +24,9 @@ const Header = () => {
 
     }
 
-    const navDropdownTitle = (<><FaUser /> <span> {seller.email}</span></>)
-
+    const getEmail = () => {
+        return (<><FaUser /> <span> {seller.email}</span></>)
+    }
     return(
         <header>
         
@@ -51,19 +54,19 @@ const Header = () => {
                             
 
                             
-                            <NavDropdown  className="justify-content-end" title={navDropdownTitle} id="basic-nav-dropdown">
-                                <NavDropdown.Item>
+                            <NavDropdown  className="justify-content-end" title={getEmail()} id="basic-nav-dropdown">
+                                <NavDropdown.Item as='div'>
                                     <Link to='/my-ads' className='nav-link'>
                                         <FaClone /> My Ads
                                     </Link>
                                 </NavDropdown.Item>
-                                <NavDropdown.Item>
+                                <NavDropdown.Item as='div'>
                                     <Link to='/account-settings' className='nav-link'>
                                         <FaCog /> Account Settings
                                     </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item >
+                                <NavDropdown.Item as='div'>
                                     <Link to='/' className='nav-link' onClick={onLogout}>
                                         <FaSignOutAlt /> Logout
                                     </Link>

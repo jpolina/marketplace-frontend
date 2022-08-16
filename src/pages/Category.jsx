@@ -67,9 +67,7 @@ function Category() {
             <div className='grid'>
                 {ads.map((ad) => {
                 return (
-                    <div>
-                        <AdCard key={ad._id} ad={ad}/>
-                    </div>
+                    <AdCard key={ad._id} ad={ad}/>
                 )
                 })}
             </div>

@@ -28,11 +28,9 @@ function Ads() {
                 <>
                     <div className='grid'>
                         {ads.map((ad) => {
-                        return (
-                            <div className=''>
+                            return (
                                 <AdCard key={ad._id} ad={ad}/>
-                            </div>
-                        )
+                            )
                         })}
                     </div>
 

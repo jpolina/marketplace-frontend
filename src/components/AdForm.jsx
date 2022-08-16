@@ -7,6 +7,7 @@ import {Form} from 'react-bootstrap'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify';
 
+
 const API_URL = '/api/'
 
 function AdForm(props) {
@@ -76,16 +77,13 @@ function AdForm(props) {
         
     }
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-
+    const uploadImage = async () => {
         // get secure url from server
         const {data} = await axios.get(API_URL+'/s3Url')
         const {url} = data;
         console.log(url);
 
         // post image directly to the s3 bucket
-
         let awsConfig = {
             headers: {
                 "Content-Type":"multipart/form-data"
@@ -94,9 +92,15 @@ function AdForm(props) {
         axios.put(url, imageFile, awsConfig)
         
         const imageUrl = url.split('?')[0]
-        console.log(imageUrl)
-        
-        // post request to server to store any extra data
+        return imageUrl
+    }
+
+
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        const imageUrl = await uploadImage();
 
         const token = await JSON.parse(localStorage.getItem('seller')).token
         const finalData = {...formData, 'price':Math.round(formData['price']*100), 'imageUrl':imageUrl}
@@ -140,7 +144,7 @@ function AdForm(props) {
             <section className="form" onSubmit={onSubmit}>
                 <form>
                     <div className="form-group my-3">
-                        <label htmlFor="title" className>Title </label>
+                        <label htmlFor="title">Title </label>
 
                         <input type="text" className="form-control" id='title' name='title' value={title} placeholder='Enter the title' onChange={onChange} required/>
                     </div>
@@ -152,11 +156,11 @@ function AdForm(props) {
                     </div>
                     
                     <div className="form-group my-3">
-                    <label htmlFor="description" className>Description </label>
+                    <label htmlFor="description">Description </label>
                         <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the description' onChange={onChange} required/>
                     </div>
                     <div className="form-group my-3">
-                        <label htmlFor="category" className>Category </label>
+                        <label htmlFor="category">Category </label>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={category} onChange={onChange} id='category' name='category' placeholder='Enter the category' required>
                             {categories.map((category)=>{
                                     return <option value = {category} key={category}>{category}</option>
@@ -164,14 +168,11 @@ function AdForm(props) {
                         </Form.Select>
 
                     </div>
-                    {/* <div className="form-group my-3">
-                        <label htmlFor="imageUrl">Image Url </label>
-                        <input type="text" className="form-control" id='imageUrl' name='imageUrl' value={imageUrl} placeholder='Enter the image URL' onChange={onChange} required/>
-                    </div> */}
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="image" className="my-0">Image</Form.Label>
                         <Form.Control type="file" accept="image/*" id="image" name="image" className="my-0" onChange={onImageChange} required/>
                     </Form.Group>
+                    
                     <div className="form-group my-3">
                         <label htmlFor="condition">Condition </label>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={condition} onChange={onChange} id='condition' name='condition' placeholder='Enter the condition' required>
@@ -185,11 +186,15 @@ function AdForm(props) {
                         {locationLoading && (<Spinner />)}
                         {formData.location.coordinates[1] &&
                             <>
-                                <p>Latitude: {formData.location.coordinates[1]}</p>
-                                <p>Longitude: {formData.location.coordinates[0]}</p>
+                                <p className='mt-2'>Latitude: {formData.location.coordinates[1]}</p>
+                                <p className='my-0'>Longitude: {formData.location.coordinates[0]}</p>
                             </>
                         }
 
+                    </div>
+                    <div className="form-group my-3">
+                    <label htmlFor="description">Address </label>
+                        <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the address or postal/zip code' onChange={onChange}/>
                     </div>
                     <div className="form-group my-2">
                         <button type='submit' className="btn btn-primary">Submit</button>
