@@ -22,8 +22,7 @@ const Home = () => {
                 
                 
             </div>
-            <h3 className='my-2'>Ads</h3>
-                <Ads />
+            <Ads />
         </>
     )
 }

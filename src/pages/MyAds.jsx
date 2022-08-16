@@ -1,5 +1,5 @@
 import {useEffect, useState}  from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import AdForm from '../components/AdForm'
 import {FaPlusCircle} from 'react-icons/fa'
@@ -48,6 +48,16 @@ function MyAds() {
                     })}
                 </div>
             )}
+
+            {!loading && ads.length==0? (<>
+                <p>You don't have any ads.</p>
+                <button className='btn btn-primary'>
+                    <Link to='/new-ad' className='text-light text-decoration-none'>
+                        <FaPlusCircle /> Post an Ad
+                    </Link>
+                </button>
+                
+            </>):(<></>)}
 
         </>
     )

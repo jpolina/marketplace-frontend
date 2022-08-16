@@ -57,13 +57,13 @@ function Category() {
     return (
 
     <>
+        <h3 className='my-3'>{category.name}</h3>
+
         {loading? (
         <>
             <Spinner />
-        </>) :(<></>)}
-
+        </>) :(
         <>
-            <h3 className='my-3'>{category.name}</h3>
             <div className='grid'>
                 {ads.map((ad) => {
                 return (
@@ -73,7 +73,10 @@ function Category() {
                 )
                 })}
             </div>
-        </>
+        </>)}
+
+        {!loading && ads.length==0? (<h5>This category has no ads.</h5>):(<></>)}
+        
 
         {isSeller? (
         <>

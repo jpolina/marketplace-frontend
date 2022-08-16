@@ -21,6 +21,9 @@ const Header = () => {
         navigate('/')
 
     }
+
+    const navDropdownTitle = (<><FaUser /> <span> {seller.email}</span></>)
+
     return(
         <header>
         
@@ -48,7 +51,7 @@ const Header = () => {
                             
 
                             
-                            <NavDropdown  className="justify-content-end" title="My Account" id="basic-nav-dropdown">
+                            <NavDropdown  className="justify-content-end" title={navDropdownTitle} id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to='/my-ads' className='nav-link'>
                                         <FaClone /> My Ads

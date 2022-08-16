@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Card, Button, Modal} from 'react-bootstrap'
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import AdForm from './AdForm';
@@ -9,6 +10,7 @@ const API_URL = '/api/'
 
 
 function AdCard(props) {
+  const navigate = useNavigate();
   const [editing, setEditing] = useState(false);
   const [show, setShow] = useState(false)
   const [isOwner, setIsOwner] = useState(false)
@@ -31,7 +33,12 @@ function AdCard(props) {
     }
     try {
         const response = await axios.delete(API_URL+`ad/${props.ad._id}`, config)
-        toast.success(response.data.message)
+        await toast.success(response.data.message)
+        handleClose()
+        setTimeout(()=> {
+          navigate(0)
+
+        }, 3000)
     } catch (err) {
         toast.error(err.response.data.message)
 

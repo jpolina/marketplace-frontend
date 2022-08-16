@@ -14,6 +14,7 @@ function AdForm(props) {
     const navigate = useNavigate()
     const[categories, setCategories] = useState([])
     const [locationLoading, setLocationLoading] = useState(false);
+    const [imageFile, setImageFile] = useState(null)
     let initialForm = {}
     if(props.ad) {
         initialForm = {
@@ -21,7 +22,6 @@ function AdForm(props) {
             price:props.ad.price/100,
             description:props.ad.description,
             category:props.ad.category.name,
-            imageUrl:props.ad.imageUrl,
             condition:props.ad.condition,
             location:props.ad.location,
         }
@@ -31,13 +31,12 @@ function AdForm(props) {
             price:'',
             description:'',
             category:'Appliances',
-            imageUrl:'',
             condition:'Brand new',
             location:{"type":"Point", "coordinates":[]},
         }
     }
     const [formData, setFormData] = useState(initialForm)
-    const {title, price, description, category, imageUrl, condition, location} = formData
+    const {title, price, description, category, condition, location} = formData
     const {seller} = useSelector((state) => (state.auth))
     useEffect(()=>{
         if(!seller) {
@@ -47,11 +46,15 @@ function AdForm(props) {
 
     useEffect(()=> {
         const fetchData = async () => {
-            const response = await axios.get(API_URL+'categories')
-            const names = response.data.categories.map((category)=>{
-                return category.name;
-            })
-            setCategories(names)
+            try{
+                const response = await axios.get(API_URL+'categories')
+                const names = response.data.categories.map((category)=>{
+                    return category.name;
+                })
+                setCategories(names)
+            } catch (e) {
+                toast.error(e.message)
+            }
         }
         fetchData()
     }, [])
@@ -60,13 +63,43 @@ function AdForm(props) {
         setFormData({...formData,
             [e.target.name]: e.target.value,
         })
-        if (e.target.name=='price') setFormData({...formData, [e.target.name]:Number(e.target.value)})
+        if (e.target.name=='price') setFormData({...formData, [e.target.name]:Number(e.target.value)});
+    }
+
+    const onImageChange = async (e) => {
+        if (e.target.files[0].size > 2097152) {
+            toast.error('The file is too large!')
+            setImageFile(null)
+        } else {
+            await setImageFile(await e.target.files[0]);
+        }
+        
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        // get secure url from server
+        const {data} = await axios.get(API_URL+'/s3Url')
+        const {url} = data;
+        console.log(url);
+
+        // post image directly to the s3 bucket
+
+        let awsConfig = {
+            headers: {
+                "Content-Type":"multipart/form-data"
+            }
+        }
+        axios.put(url, imageFile, awsConfig)
+        
+        const imageUrl = url.split('?')[0]
+        console.log(imageUrl)
+        
+        // post request to server to store any extra data
+
         const token = await JSON.parse(localStorage.getItem('seller')).token
-        const finalData = await {...formData, ['price']:Math.round(formData['price']*100)}
+        const finalData = {...formData, 'price':Math.round(formData['price']*100), 'imageUrl':imageUrl}
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -131,10 +164,14 @@ function AdForm(props) {
                         </Form.Select>
 
                     </div>
-                    <div className="form-group my-3">
+                    {/* <div className="form-group my-3">
                         <label htmlFor="imageUrl">Image Url </label>
                         <input type="text" className="form-control" id='imageUrl' name='imageUrl' value={imageUrl} placeholder='Enter the image URL' onChange={onChange} required/>
-                    </div>
+                    </div> */}
+                    <Form.Group className="mb-3">
+                        <Form.Label htmlFor="image" className="my-0">Image</Form.Label>
+                        <Form.Control type="file" accept="image/*" id="image" name="image" className="my-0" onChange={onImageChange} required/>
+                    </Form.Group>
                     <div className="form-group my-3">
                         <label htmlFor="condition">Condition </label>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={condition} onChange={onChange} id='condition' name='condition' placeholder='Enter the condition' required>
