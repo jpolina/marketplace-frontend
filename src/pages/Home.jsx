@@ -1,10 +1,17 @@
 import Ads from '../components/Ads'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate = useNavigate();
     return(
         <>
             <div className='container d-flex align-items-center'>
-                <h1 className='mx-4'><strong>Welcome to the Online Marketplace!</strong></h1>
+                <div>
+                    <h1 className='mx-4'>
+                        <strong>Welcome to the Online Marketplace!</strong>
+                    </h1>
+                    <button className='mx-4 mt-2 btn btn-primary' onClick={()=>{navigate('/ads')}}>Explore Ads</button>
+                </div>
                 <iframe 
                     title='Ad Locations'
                     style={

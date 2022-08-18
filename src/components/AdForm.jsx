@@ -25,6 +25,9 @@ function AdForm(props) {
             category:props.ad.category.name,
             condition:props.ad.condition,
             location:props.ad.location,
+            address:props.ad.address,
+            city:props.ad.city,
+            state:props.ad.state,
         }
     } else {
         initialForm = {
@@ -34,10 +37,14 @@ function AdForm(props) {
             category:'Appliances',
             condition:'Brand new',
             location:{"type":"Point", "coordinates":[]},
+            address:'',
+            city:'',
+            state:'',
+            zip:''
         }
     }
     const [formData, setFormData] = useState(initialForm)
-    const {title, price, description, category, condition, location} = formData
+    const {title, price, description, category, condition, location, address, city, state, zip} = formData
     const {seller} = useSelector((state) => (state.auth))
     useEffect(()=>{
         if(!seller) {
@@ -64,7 +71,7 @@ function AdForm(props) {
         setFormData({...formData,
             [e.target.name]: e.target.value,
         })
-        if (e.target.name=='price') setFormData({...formData, [e.target.name]:Number(e.target.value)});
+        if (e.target.name=='price') setFormData({...formData, ['price']:Number(e.target.value)});
     }
 
     const onImageChange = async (e) => {
@@ -118,9 +125,11 @@ function AdForm(props) {
             navigate('/my-ads')
         } catch (err) {
             toast.error(err.response.data.message)
-        }
-        
+            toast.error(err.response.data.error)
+            toast.error(err.response.error)
 
+
+        }
     }
 
     const locationButton = (e) => {
@@ -144,23 +153,23 @@ function AdForm(props) {
             <section className="form" onSubmit={onSubmit}>
                 <form>
                     <div className="form-group my-3">
-                        <label htmlFor="title">Title </label>
+                        <label htmlFor="title" className='required'>Title </label>
 
                         <input type="text" className="form-control" id='title' name='title' value={title} placeholder='Enter the title' onChange={onChange} required/>
                     </div>
 
-                    <label htmlFor="price">Price </label>
+                    <label htmlFor="price" className='required'>Price </label>
                     <div className="input-group mb-3">
                         <span className="input-group-text">$</span>
                         <input type="number" className="form-control" id='price' name='price' value={price} placeholder='Enter the price' onChange={onChange} required/>
                     </div>
                     
                     <div className="form-group my-3">
-                    <label htmlFor="description">Description </label>
+                        <label htmlFor="description" className='required'>Description </label>
                         <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the description' onChange={onChange} required/>
                     </div>
                     <div className="form-group my-3">
-                        <label htmlFor="category">Category </label>
+                        <label htmlFor="category" className='required'>Category </label>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={category} onChange={onChange} id='category' name='category' placeholder='Enter the category' required>
                             {categories.map((category)=>{
                                     return <option value = {category} key={category}>{category}</option>
@@ -169,32 +178,49 @@ function AdForm(props) {
 
                     </div>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="image" className="my-0">Image</Form.Label>
+                        <Form.Label htmlFor="image" className="my-0 required" >Image</Form.Label>
                         <Form.Control type="file" accept="image/*" id="image" name="image" className="my-0" onChange={onImageChange} required/>
                     </Form.Group>
                     
                     <div className="form-group my-3">
-                        <label htmlFor="condition">Condition </label>
+                        <label htmlFor="condition" className='required'>Condition </label>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={condition} onChange={onChange} id='condition' name='condition' placeholder='Enter the condition' required>
                             {conditions.map((condition)=>{
                                     return <option value = {condition} key={condition}>{condition}</option>
                                 })}
                         </Form.Select>
                     </div>
-                    <div className="form-group my-3">
+
+                    
+                    {/* <div className="form-group my-3">
+
                         <button type="submit" className='locationButton btn btn-primary' name='locationButton' id='locationButton' onClick={locationButton}>Use my location</button>
                         {locationLoading && (<Spinner />)}
                         {formData.location.coordinates[1] &&
                             <>
-                                <p className='mt-2'>Latitude: {formData.location.coordinates[1]}</p>
-                                <p className='my-0'>Longitude: {formData.location.coordinates[0]}</p>
+                                <span className='mt-2'> Latitude: {formData.location.coordinates[1]}, </span>
+                                <span className='my-0'>Longitude: {formData.location.coordinates[0]}</span>
                             </>
                         }
 
-                    </div>
+                    </div> */}
                     <div className="form-group my-3">
                     <label htmlFor="description">Address </label>
-                        <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the address or postal/zip code' onChange={onChange}/>
+                        <input type="text" className="form-control" id='address' name='address' value={address} placeholder='Enter the address' onChange={onChange}/>
+                    </div>
+                    <div className="row">
+                        <div class="col-md-6 mb-3">
+                            <label htmlFor="city">City</label>
+                            <input type="text" className="form-control" id="city" name="city" placeholder="City" value={city} onChange={onChange}></input>
+                        </div>
+                        <div className="col-md-3 mb-3">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state" name="state" placeholder="State" value={state} onChange={onChange}></input>
+                        </div>
+                        <div className="col-md-3 mb-3">
+                            <label for="zip">Zip</label>
+                            <input type="text" className="form-control" id="zip" name="zip" placeholder="Zip" value={zip} onChange={onChange}></input>
+                        </div>
                     </div>
                     <div className="form-group my-2">
                         <button type='submit' className="btn btn-primary">Submit</button>
