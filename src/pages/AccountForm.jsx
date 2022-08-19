@@ -6,6 +6,8 @@ import axios from 'axios';
 import {login, reset, register, logout} from '../features/auth/authSlice'
 import {FaUser} from 'react-icons/fa'
 import Spinner from '../components/Spinner'
+import {FloatingLabel, Form} from 'react-bootstrap'
+
 
 const API_URL = '/api/'
 
@@ -110,21 +112,26 @@ const AccountForm = () => {
 
             <section className="form">
                 <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input type="text" className="form-control my-2" id='name' name='name' value={name} placeholder='Enter your new name' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="email" className="form-control my-2" id='email' name='email' value={email} placeholder='Enter your new email' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="tel" className="form-control my-2" id='phone' name='phone' value={phone} placeholder='Enter your new phone number (optional)' onChange={onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control my-2" id='password' name='password' value={password} placeholder='Enter a new password' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control my-2" id='password2' name='password2' value={password2} placeholder='Confirm your new password' onChange={onChange} required/>
-                    </div>
+                    <FloatingLabel label="New name" className="mb-3">
+                        <Form.Control type="text" className="form-control my-2" id='name' name='name' value={name} placeholder='Enter your new name' onChange={onChange} required/>
+                    </FloatingLabel>
+                    
+                    <FloatingLabel label="New email">
+                        <Form.Control type="email" className="form-control my-2" id='email' name='email' value={email} placeholder='Enter your new email' onChange={onChange} required/>
+                    </FloatingLabel>
+
+                    <FloatingLabel label="New phone number (optional)" className="mb-3">
+                        <Form.Control type="tel" className="form-control my-2" id='phone' name='phone' value={phone} placeholder='Enter your new phone number (optional)' onChange={onChange}/>
+                    </FloatingLabel>
+                    
+                    <FloatingLabel label="New password">
+                        <Form.Control type="password" className="form-control my-2" id='password' name='password' value={password} placeholder='Enter a new password' onChange={onChange} required/>
+                    </FloatingLabel>
+
+                    <FloatingLabel label="Confirm your new password">
+                        <Form.Control type="password" className="form-control my-2" id='password2' name='password2' value={password2} placeholder='Confirm your new password' onChange={onChange} required/>
+                    </FloatingLabel>
+
                     <div className="form-group">
                         <button type='submit' className="btn btn-primary">Submit</button>
                     </div>

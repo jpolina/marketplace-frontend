@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {FaPlusCircle} from 'react-icons/fa'
 import axios from 'axios';
-import {Form} from 'react-bootstrap'
+import {Form, FloatingLabel} from 'react-bootstrap'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify';
 
@@ -67,15 +67,19 @@ function CategoryForm(props) {
             <section className="form" onSubmit={onSubmit}>
                 <form>
                     <div className="form-group my-3">
-                        <label htmlFor="name" className='text-muted'>Name </label>
+                        {/* <label htmlFor="name" className='text-muted'>Name </label> */}
 
                         {props.operation=='put'?(
                             <>
-                                <input type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the new category name' onChange={onChange} required/>
+                                <FloatingLabel label="Category name">
+                                    <Form.Control type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the new category name' onChange={onChange} required />
+                                </FloatingLabel>
                             </>
                         ):(
                             <>
-                                <input type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the category name' onChange={onChange} required/>
+                                <FloatingLabel label="Category name">
+                                    <Form.Control type="text" className="form-control" id='name' name='name' value={name} placeholder='Enter the category name' onChange={onChange} required />
+                                </FloatingLabel>
                             </>
                         )}
 

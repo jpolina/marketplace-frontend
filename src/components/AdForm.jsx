@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {FaPlusCircle} from 'react-icons/fa'
 import axios from 'axios';
-import {Form} from 'react-bootstrap'
+import {Form, FloatingLabel, InputGroup, Row, Col} from 'react-bootstrap'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify';
 
@@ -125,9 +125,6 @@ function AdForm(props) {
             navigate('/my-ads')
         } catch (err) {
             toast.error(err.response.data.message)
-            toast.error(err.response.data.error)
-            toast.error(err.response.error)
-
 
         }
     }
@@ -152,44 +149,41 @@ function AdForm(props) {
         <>
             <section className="form" onSubmit={onSubmit}>
                 <form>
-                    <div className="form-group my-3">
-                        <label htmlFor="title" className='required'>Title </label>
+                    <FloatingLabel label="Title" className="mb-3">
+                        <Form.Control type="text" className="form-control required" id='title' name='title' value={title} placeholder='Enter the title' onChange={onChange} required />
+                    </FloatingLabel>
 
-                        <input type="text" className="form-control" id='title' name='title' value={title} placeholder='Enter the title' onChange={onChange} required/>
-                    </div>
-
-                    <label htmlFor="price" className='required'>Price </label>
-                    <div className="input-group mb-3">
-                        <span className="input-group-text">$</span>
-                        <input type="number" className="form-control" id='price' name='price' value={price} placeholder='Enter the price' onChange={onChange} required/>
-                    </div>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Text>$</InputGroup.Text>
+                        <FloatingLabel label="Price">
+                            <Form.Control type="number" className="form-control" id='price' name='price' value={price} placeholder='Enter the price' onChange={onChange} required />
+                        </FloatingLabel>
+                    </InputGroup>
                     
-                    <div className="form-group my-3">
-                        <label htmlFor="description" className='required'>Description </label>
-                        <input type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the description' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group my-3">
-                        <label htmlFor="category" className='required'>Category </label>
-                        <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={category} onChange={onChange} id='category' name='category' placeholder='Enter the category' required>
-                            {categories.map((category)=>{
-                                    return <option value = {category} key={category}>{category}</option>
-                                })}
-                        </Form.Select>
+                    <FloatingLabel label="Description" className="mb-3">
+                        <Form.Control type="text" className="form-control" id='description' name='description' value={description} placeholder='Enter the description' onChange={onChange} required />
+                    </FloatingLabel>
 
-                    </div>
+                    <FloatingLabel label="Category" className='mb-3'>
+                        <Form.Select aria-label="Select category">
+                            {categories.map((category)=>{
+                                return <option value = {category} key={category}>{category}</option>
+                            })}
+                        </Form.Select>
+                    </FloatingLabel>
+
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="image" className="my-0 required" >Image</Form.Label>
+                        <Form.Label htmlFor="image" className="my-0 text-muted" >Image</Form.Label>
                         <Form.Control type="file" accept="image/*" id="image" name="image" className="my-0" onChange={onImageChange} required/>
                     </Form.Group>
-                    
-                    <div className="form-group my-3">
-                        <label htmlFor="condition" className='required'>Condition </label>
+
+                    <FloatingLabel label="Condition" className='mb-3'>
                         <Form.Select aria-label="Default select example" className='d-inline-block form-inline' value={condition} onChange={onChange} id='condition' name='condition' placeholder='Enter the condition' required>
                             {conditions.map((condition)=>{
-                                    return <option value = {condition} key={condition}>{condition}</option>
-                                })}
+                                return <option value = {condition} key={condition}>{condition}</option>
+                            })}
                         </Form.Select>
-                    </div>
+                    </FloatingLabel>
 
                     
                     {/* <div className="form-group my-3">
@@ -204,24 +198,30 @@ function AdForm(props) {
                         }
 
                     </div> */}
-                    <div className="form-group my-3">
-                    <label htmlFor="description">Address </label>
-                        <input type="text" className="form-control" id='address' name='address' value={address} placeholder='Enter the address' onChange={onChange}/>
-                    </div>
-                    <div className="row">
-                        <div class="col-md-6 mb-3">
-                            <label htmlFor="city">City</label>
-                            <input type="text" className="form-control" id="city" name="city" placeholder="City" value={city} onChange={onChange}></input>
-                        </div>
-                        <div className="col-md-3 mb-3">
-                            <label for="state">State</label>
-                            <input type="text" class="form-control" id="state" name="state" placeholder="State" value={state} onChange={onChange}></input>
-                        </div>
-                        <div className="col-md-3 mb-3">
-                            <label for="zip">Zip</label>
-                            <input type="text" className="form-control" id="zip" name="zip" placeholder="Zip" value={zip} onChange={onChange}></input>
-                        </div>
-                    </div>
+
+                    <FloatingLabel label="Address" className="mb-3">
+                        <Form.Control type="text" className="form-control" id='address' name='address' value={address} placeholder='Enter the address' onChange={onChange}/>
+                    </FloatingLabel>
+
+
+                    <Row>
+                        <Col xs={6}>
+                            <FloatingLabel label="City" className="mb-3">
+                                <Form.Control type="text" className="form-control" id="city" name="city" placeholder="City" value={city} onChange={onChange}/>
+                            </FloatingLabel>
+                        </Col>
+                        <Col xs={3}>
+                            <FloatingLabel label="State" className="mb-3">
+                                <Form.Control type="text" className="form-control" id="state" name="state" placeholder="State" value={state} onChange={onChange}/>
+                            </FloatingLabel>
+                        </Col>
+                        <Col xs={3}>
+                            <FloatingLabel label="Zip" className="mb-3">
+                                <Form.Control type="text" className="form-control" id="zip" name="zip" placeholder="Zip" value={zip} onChange={onChange}/>
+                            </FloatingLabel>
+                        </Col>
+                    </Row>
+
                     <div className="form-group my-2">
                         <button type='submit' className="btn btn-primary">Submit</button>
                     </div>

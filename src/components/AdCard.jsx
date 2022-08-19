@@ -89,21 +89,23 @@ function AdCard(props) {
                 <div>
                   <img src={props.ad.imageUrl} className='rounded' style={{maxWidth:'100%', maxHeight:'500px', objectFit:'contain', margin:'0px'}} alt={props.ad.title + ' image'}/>
                 </div>
-                <div className='mx-3 bg-light p-3 rounded'>
-                  <p>Description: {props.ad.description}</p>
-                  <p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>
-                  <p>Address: {props.ad.address}</p>
+                <div>
+                  <div className='mx-3 bg-light p-3 rounded shadow-sm'>
+                    <p>Description: {props.ad.description}</p>
+                    
+                    {props.ad.location.coordinates[0] ? (<p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>):(<></>)}
+                    {props.ad.address? (<p>Address: {props.ad.address}</p>):(<></>)}
 
-                  <p>Condition: {props.ad.condition}</p>
-
-
-
-                  <p>Seller: {props.ad.seller.name}</p>
-                  <p>Seller's email: {props.ad.seller.email}</p>
-                  {props.ad.seller.phone!='false' ? (
-                  <p>Seller's phone number: {props.ad.seller.phone}</p>)
-                    : (<></>)
-                  }
+                    <p>Condition: {props.ad.condition}</p>
+                  </div>
+                  <div className='mx-3 my-3 bg-light p-3 rounded shadow-sm'>
+                    <p>Seller: {props.ad.seller.name}</p>
+                    <p>Seller's email: {props.ad.seller.email}</p>
+                    {props.ad.seller.phone!='false' ? (
+                    <p>Seller's phone number: {props.ad.seller.phone}</p>)
+                      : (<></>)
+                    }
+                  </div>
                 </div>
               </div>
             </Modal.Body>

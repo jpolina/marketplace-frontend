@@ -5,6 +5,7 @@ import {toast} from 'react-toastify'
 import {FaUser} from 'react-icons/fa'
 import {register, reset} from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import {FloatingLabel, Form} from 'react-bootstrap'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -44,13 +45,17 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if(password !== password2) {
-            toast.error('Passwords do not match')
-        } else {
-            const sellerData = {
-                name, email, phone, password
+        try {
+            if(password !== password2) {
+                toast.error('Passwords do not match')
+            } else {
+                const sellerData = {
+                    name, email, phone, password
+                }
+                dispatch(register(sellerData))
             }
-            dispatch(register(sellerData))
+        } catch(err) {
+            toast.error(err.message)
         }
     }
 
@@ -60,30 +65,38 @@ const Register = () => {
 
     return(
         <>
-            <section className = "heading">
+            <section className = "heading my-2">
                 <h1>
                     <FaUser /> Register
                 </h1>
-                <p>Please create an account</p>
+                <p>Create an account to post ads</p>
             </section>
 
             <section className="form">
                 <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <input type="text" className="form-control my-2" id='name' name='name' value={name} placeholder='Enter your name' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="email" className="form-control my-2" id='email' name='email' value={email} placeholder='Enter your email' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="tel" className="form-control my-2" id='phone' name='phone' value={phone} placeholder='Enter your phone number (optional)' onChange={onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control my-2" id='password' name='password' value={password} placeholder='Enter a password' onChange={onChange} required/>
-                    </div>
-                    <div className="form-group">
-                        <input type="password" className="form-control my-2" id='password2' name='password2' value={password2} placeholder='Confirm your password' onChange={onChange} required/>
-                    </div>
+
+                    <FloatingLabel label="Name" className="mb-3">
+                        <Form.Control type="text" className="form-control my-2" id='name' name='name' value={name} placeholder='Enter your name' onChange={onChange} required/>
+                    </FloatingLabel>
+                    
+                    <FloatingLabel label="Email">
+                        <Form.Control type="email" className="form-control my-2" id='email' name='email' value={email} placeholder='Enter your email' onChange={onChange} required/>
+                    </FloatingLabel>
+
+                    <FloatingLabel label="Phone number (optional)" className="mb-3">
+                        <Form.Control type="tel" className="form-control my-2" id='phone' name='phone' value={phone} placeholder='Enter your phone number (optional)' onChange={onChange}/>
+                    </FloatingLabel>
+                    
+                    <FloatingLabel label="Password">
+                        <Form.Control type="password" className="form-control my-2" id='password' name='password' value={password} placeholder='Enter a password' onChange={onChange} required/>
+                    </FloatingLabel>
+
+                    <FloatingLabel label="Confirm your password">
+                        <Form.Control type="password" className="form-control my-2" id='password2' name='password2' value={password2} placeholder='Confirm your password' onChange={onChange} required/>
+                    </FloatingLabel>
+
+
+
                     <div className="form-group">
                         <button type='submit' className="btn btn-primary">Submit</button>
                     </div>

@@ -12,7 +12,7 @@ import BrowseAds from './pages/BrowseAds'
 import AccountForm from './pages/AccountForm'
 import NotFound from './pages/NotFound'
 import Category from './pages/Category'
-import '../src/css/style.css'
+// import '../src/css/style.css'
 
 
 function App() {
