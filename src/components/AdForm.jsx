@@ -119,7 +119,7 @@ function AdForm(props) {
         try {
             let response;
             if (props.operation) {
-                 response = await axios.put(API_URL+`ad/${props.ad._id}`, finalData, config)
+                response = await axios.put(API_URL+`ad/${props.ad._id}`, finalData, config)
             } else response = await axios.post(API_URL+'ad', finalData, config);
             toast.success(response.data.message)
             navigate('/my-ads')
@@ -129,21 +129,21 @@ function AdForm(props) {
         }
     }
 
-    const locationButton = (e) => {
+    // const locationButton = (e) => {
 
-        e.preventDefault();
-        setLocationLoading(true);
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(async (position)=>{
-                await setFormData({
-                    ...formData,
-                    location: {"type":"Point", "coordinates":[position.coords.longitude, position.coords.latitude]}
-                })
-                setLocationLoading(false);
+    //     e.preventDefault();
+    //     setLocationLoading(true);
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.getCurrentPosition(async (position)=>{
+    //             await setFormData({
+    //                 ...formData,
+    //                 location: {"type":"Point", "coordinates":[position.coords.longitude, position.coords.latitude]}
+    //             })
+    //             setLocationLoading(false);
 
-            })
-        }
-    }
+    //         })
+    //     }
+    // }
 
     return(
         <>

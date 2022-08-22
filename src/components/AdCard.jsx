@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import AdForm from './AdForm';
+import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa'
 
 const image = require("../img/adpic.png")
 const API_URL = '/api/'
@@ -99,10 +100,10 @@ function AdCard(props) {
                     <p>Condition: {props.ad.condition}</p>
                   </div>
                   <div className='mx-3 my-3 bg-light p-3 rounded shadow-sm'>
-                    <p>Seller: {props.ad.seller.name}</p>
-                    <p>Seller's email: {props.ad.seller.email}</p>
+                    <p><FaUser /> {props.ad.seller.name}</p>
+                    <p><FaEnvelope /> {props.ad.seller.email}</p>
                     {props.ad.seller.phone!='false' ? (
-                    <p>Seller's phone number: {props.ad.seller.phone}</p>)
+                    <p><FaPhone /> {props.ad.seller.phone}</p>)
                       : (<></>)
                     }
                   </div>
