@@ -55,6 +55,7 @@ function AdCard(props) {
     }
 
   },[])
+  
   return (
     <>
         <Card style={{ margin:'10px', height:'20rem', cursor:'pointer'}} className='shadow-sm bg-white rounded' onClick = {handleShow}>

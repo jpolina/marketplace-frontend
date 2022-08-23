@@ -5,7 +5,7 @@ import axios from 'axios';
 import Spinner from '../components/Spinner';
 import AdCard from '../components/AdCard';
 import CategoryForm from '../components/CategoryForm';
-import '../css/grid.css'
+// import '../css/grid.css'
 import { toast } from 'react-toastify';
 
 const API_URL = '/api/'

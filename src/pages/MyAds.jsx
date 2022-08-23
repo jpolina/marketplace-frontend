@@ -5,7 +5,6 @@ import AdForm from '../components/AdForm'
 import {FaPlusCircle} from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import axios from 'axios';
-import '../css/grid.css'
 import AdCard from '../components/AdCard'
 const API_URL = '/api/'
 

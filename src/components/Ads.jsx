@@ -5,14 +5,10 @@ import {FaSearch, FaFilter} from 'react-icons/fa'
 import axios from 'axios'
 import Spinner from './Spinner'
 import AdCard from './AdCard'
-import '../css/grid.css'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 
-
-
 const API_URL = '/api/'
-
 
 function Ads() {
     const navigate = useNavigate();
@@ -42,7 +38,7 @@ function Ads() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get(API_URL+'ads'))
+            const response = (await axios.get(API_URL+'ads', {'params':{'limit':20}}))
             setAds(response.data)
             setLoading(false)
         }
