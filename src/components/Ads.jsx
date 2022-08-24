@@ -166,7 +166,6 @@ function Ads() {
                 <Spinner />
             ):(
                 <>
-                    
                     <div className='grid'>
                         {ads.map((ad) => {
                             return (
@@ -177,6 +176,10 @@ function Ads() {
 
                 </>
             )}
+
+            {!loading && ads.length==0?(
+                <div>Your search did not match any ads.</div>
+            ):(<></>)}
             
         </>
         

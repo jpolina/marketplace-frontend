@@ -20,9 +20,7 @@ function AdCarousel() {
         const getAds = async () => {
             const response = (await axios.get(API_URL+'ads', {params: {'limit':9}}))
             setAds(response.data)
-            setLoading(false)
-            console.log(ads[0])
-            
+            setLoading(false)            
         }
         getAds();
     }, [])
@@ -35,11 +33,11 @@ function AdCarousel() {
             <Carousel variant='dark' className='w-100 carousel p-0'>
                 {ads.map((ad, index)=>{
                     if (index%3==0 && index<ads.length) return (
-                        <Carousel.Item interval = {10000} style={{placeSelf:'center'}}>
+                        <Carousel.Item key={index} interval = {10000} style={{placeSelf:'center'}}>
                             <div className="carousel-grid">
-                                <AdCard key = {ad._id} ad={ad}/>
-                                <AdCard key = {ad._id} ad={ads[index+1]}/>
-                                <AdCard key = {ad._id} ad={ads[index+2]}/>
+                                <AdCard key={ad._id} ad={ad}/>
+                                <AdCard key={ads[index+1]._id} ad={ads[index+1]}/>
+                                <AdCard key={ads[index+2]._id} ad={ads[index+2]}/>
 
                             </div>
 

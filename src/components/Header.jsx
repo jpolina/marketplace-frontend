@@ -28,7 +28,7 @@ const Header = () => {
         return (<><FaUserCircle /> <span> {seller.email}</span></>)
     }
     return(
-        <header>
+        <header className='sticky-top'>
         
         
             {seller ? (
@@ -40,39 +40,39 @@ const Header = () => {
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Link to='/ads' className='nav-link'>
-                                <FaSearch /> Browse Ads
-                            </Link>
-                            <Link to='/categories' className='nav-link'>
-                                <FaThLarge /> Browse Categories
-                            </Link>
-                            <Link to='/new-ad' className='nav-link'>
-                                <FaPlusCircle /> Post an Ad
-                            </Link>
+                            <Nav className="" style={{width:'100%'}}>
+                                <Link to='/ads' className='nav-link'>
+                                    <FaSearch /> Browse Ads
+                                </Link>
+                                <Link to='/categories' className='nav-link'>
+                                    <FaThLarge /> Browse Categories
+                                </Link>
+                                <Link to='/new-ad' className='nav-link'>
+                                    <FaPlusCircle /> Post an Ad
+                                </Link>
 
-                            
+                                
 
-                            
-                            <NavDropdown  className="justify-content-end" title={getEmail()} id="basic-nav-dropdown">
-                                <NavDropdown.Item as='div'>
-                                    <Link to='/my-ads' className='nav-link'>
-                                        <FaClone /> My Ads
-                                    </Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item as='div'>
-                                    <Link to='/account-settings' className='nav-link'>
-                                        <FaCog /> Account Settings
-                                    </Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item as='div'>
-                                    <Link to='/' className='nav-link' onClick={onLogout}>
-                                        <FaSignOutAlt /> Logout
-                                    </Link>
-                                </NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
+                                
+                                <NavDropdown  className="ms-auto" title={getEmail()} id="basic-nav-dropdown" style={{}}>
+                                    <NavDropdown.Item as='div'>
+                                        <Link to='/my-ads' className='nav-link'>
+                                            <FaClone /> My Ads
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as='div'>
+                                        <Link to='/account-settings' className='nav-link'>
+                                            <FaCog /> Account Settings
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item as='div'>
+                                        <Link to='/' className='nav-link' onClick={onLogout}>
+                                            <FaSignOutAlt /> Logout
+                                        </Link>
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
