@@ -25,7 +25,6 @@ const login = async (sellerData) => {
         localStorage.setItem('seller', JSON.stringify(response.data))
     }
     toast.success(response.data.message)
-    // console.log(response.data.message)
 
 
 

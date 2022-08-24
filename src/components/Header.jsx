@@ -36,7 +36,7 @@ const Header = () => {
                 <Navbar bg="light" expand="lg" style={{width:"100%"}}>
                     <Container className='container-xxl'>
                         <Navbar.Brand>
-                            <Link to='/' className='nav-link'>Online Marketplace</Link>
+                            <Link to='/' className='nav-link'>Marketplace</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -82,7 +82,7 @@ const Header = () => {
                     <Navbar bg="light" expand="lg" style={{width:"100%"}}>
                     <Container className='container-fluid'>
                         <Navbar.Brand>
-                            <Link to='/' className='nav-link'>Online Marketplace</Link>
+                            <Link to='/' className='nav-link'>Marketplace</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

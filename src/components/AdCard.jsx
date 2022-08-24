@@ -26,7 +26,6 @@ function AdCard(props) {
 
   const handleDelete = async () => {
     const token = JSON.parse(localStorage.getItem('seller')).token
-    console.log(props.ad._id)
     const config = {
         headers: {
             Authorization: `Bearer ${token}`

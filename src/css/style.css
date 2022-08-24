@@ -6,6 +6,7 @@
 .welcome {
     width:50%;
     min-width:400px;
+    margin-left:0px;
 }
 
 .welcome-container {
@@ -15,6 +16,11 @@
 
 .welcome-text {
     font-size:50px;
+    padding-left:5vw;
+}
+
+.explore {
+    margin-left:5vw
 }
 
 .map {

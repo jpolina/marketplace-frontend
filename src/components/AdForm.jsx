@@ -88,7 +88,6 @@ function AdForm(props) {
         // get secure url from server
         const {data} = await axios.get(API_URL+'/s3Url')
         const {url} = data;
-        console.log(url);
 
         // post image directly to the s3 bucket
         let awsConfig = {

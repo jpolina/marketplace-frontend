@@ -86,7 +86,6 @@ const AccountForm = () => {
                     Authorization: `Bearer ${token}`
                 }
             }
-            console.log(seller._id)
             try {
               let response = await axios.put(API_URL+`seller/${seller._id}`, formData, config)
               toast.success(response.data.message)
