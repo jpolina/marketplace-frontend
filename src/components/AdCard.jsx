@@ -94,7 +94,7 @@ function AdCard(props) {
                   <div className='mx-3 bg-light p-3 rounded shadow-sm'>
                     <p>Description: {props.ad.description}</p>
                     
-                    {props.ad.location.coordinates[0] ? (<p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>):(<></>)}
+                    {props.ad.location!=undefined ? (<p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>):(<></>)}
                     {props.ad.address? (<p>Address: {props.ad.address}</p>):(<></>)}
 
                     <p>Condition: {props.ad.condition}</p>

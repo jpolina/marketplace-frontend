@@ -72,6 +72,7 @@ function AdForm(props) {
             [e.target.name]: e.target.value,
         })
         if (e.target.name=='price') setFormData({...formData, ['price']:Number(e.target.value)});
+        console.log(formData.category)
     }
 
     const onImageChange = async (e) => {
@@ -167,9 +168,9 @@ function AdForm(props) {
                     </FloatingLabel>
 
                     <FloatingLabel label="Category" className='mb-3'>
-                        <Form.Select aria-label="Select category">
-                            {categories.map((category)=>{
-                                return <option value = {category} key={category}>{category}</option>
+                        <Form.Select aria-label="Select category" onChange={onChange} value={category} id='category' name='category'>
+                            {categories.map((option)=>{
+                                return <option value = {option} key={option}>{option}</option>
                             })}
                         </Form.Select>
                     </FloatingLabel>
@@ -202,7 +203,7 @@ function AdForm(props) {
                     </div> */}
 
                     <FloatingLabel label="Address" className="mb-3">
-                        <Form.Control type="text" className="form-control" id='address' name='address' value={address} placeholder='Enter the address' onChange={onChange}/>
+                        <Form.Control type="text" className="form-control" id='address' name='address' value={address} placeholder='Enter the address' onChange={onChange} required/>
                     </FloatingLabel>
 
 

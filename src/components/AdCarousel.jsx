@@ -32,7 +32,7 @@ function AdCarousel() {
             ):(
             <Carousel variant='dark' className='w-100 carousel p-0'>
                 {ads.map((ad, index)=>{
-                    if (index%3==0 && index<ads.length) return (
+                    if (index%3==0 && index<ads.length-2) return (
                         <Carousel.Item key={index} interval = {10000} style={{placeSelf:'center'}}>
                             <div className="carousel-grid">
                                 <AdCard key={ad._id} ad={ad}/>

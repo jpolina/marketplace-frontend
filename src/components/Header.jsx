@@ -10,8 +10,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useEffect } from 'react';
 import { getByTitle } from '@testing-library/react';
 
-//https://i.imgur.com/KHrRhWX.jpg
-
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -28,7 +26,7 @@ const Header = () => {
         return (<><FaUserCircle /> <span> {seller.email}</span></>)
     }
     return(
-        <header className='sticky-top'>
+        <header className='sticky-top border-bottom'>
         
         
             {seller ? (
