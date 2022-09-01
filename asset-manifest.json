@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/marketplace-client/static/css/main.2ceba0c8.css",
+    "main.js": "/marketplace-client/static/js/main.571dccc0.js",
+    "static/js/787.c3eeeb6a.chunk.js": "/marketplace-client/static/js/787.c3eeeb6a.chunk.js",
+    "static/media/adpic.png": "/marketplace-client/static/media/adpic.0b3dbf715579af7b80ad.png",
+    "index.html": "/marketplace-client/index.html",
+    "main.2ceba0c8.css.map": "/marketplace-client/static/css/main.2ceba0c8.css.map",
+    "main.571dccc0.js.map": "/marketplace-client/static/js/main.571dccc0.js.map",
+    "787.c3eeeb6a.chunk.js.map": "/marketplace-client/static/js/787.c3eeeb6a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ceba0c8.css",
+    "static/js/main.571dccc0.js"
+  ]
+}
