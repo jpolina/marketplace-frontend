@@ -16,9 +16,14 @@ function AdCarousel() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get('ads', {params: {'limit':9}}))
-            setAds(response.data)
-            setLoading(false)            
+            try {
+                const response = (await axios.get('ads', {params: {'limit':9}}))
+                setAds(response.data)
+                setLoading(false)   
+            } catch (e) {
+                toast.error(e.message)
+                toast.error('Please try turning off ad blockers')
+            }
         }
         getAds();
     }, [])
