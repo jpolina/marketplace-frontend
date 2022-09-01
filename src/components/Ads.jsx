@@ -8,8 +8,6 @@ import AdCard from './AdCard'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 
-const API_URL = '/api/'
-
 function Ads() {
     const navigate = useNavigate();
     const [ads, setAds] = useState([])
@@ -38,7 +36,7 @@ function Ads() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get(API_URL+'ads', {'params':{'limit':20}}))
+            const response = (await axios.get('ads', {'params':{'limit':20}}))
             setAds(response.data)
             setLoading(false)
         }
@@ -46,7 +44,7 @@ function Ads() {
 
         const fetchData = async () => {
             try{
-                const response = await axios.get(API_URL+'categories')
+                const response = await axios.get('categories')
                 const names = response.data.categories.map((category)=>{
                     return category.name;
                 })
@@ -63,7 +61,7 @@ function Ads() {
         try {
             e.preventDefault();
             setLoading(true)
-            const response = await axios.post(API_URL+'ads/search', formData)
+            const response = await axios.post('ads/search', formData)
             setAds(response.data)
             setLoading(false)
         } catch (e) {

@@ -7,8 +7,6 @@ import {Form, FloatingLabel} from 'react-bootstrap'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify';
 
-const API_URL = '/api/'
-
 function CategoryForm(props) {
     const navigate = useNavigate()
     let initialForm = {}
@@ -48,8 +46,8 @@ function CategoryForm(props) {
         try {
             let response;
             if (props.operation=='put') {
-                response = await axios.put(API_URL+`category/${props.category._id}`, formData, config)
-            } else response = await axios.post(API_URL+'category', formData, config);
+                response = await axios.put(`category/${props.category._id}`, formData, config)
+            } else response = await axios.post('category', formData, config);
             toast.success(response.data.message)
             setTimeout(()=> {
                 navigate('/categories')

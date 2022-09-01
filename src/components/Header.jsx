@@ -52,7 +52,7 @@ const Header = () => {
                                 
 
                                 
-                                <NavDropdown  className="ms-auto" title={getEmail()} id="basic-nav-dropdown" style={{}}>
+                                <NavDropdown  className="email-dropdown" title={getEmail()} id="basic-nav-dropdown">
                                     <NavDropdown.Item as='div'>
                                         <Link to='/my-ads' className='nav-link'>
                                             <FaClone /> My Ads

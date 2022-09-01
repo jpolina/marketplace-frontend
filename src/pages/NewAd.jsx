@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux'
 import AdForm from '../components/AdForm'
 import {FaPlusCircle} from 'react-icons/fa'
 import axios from 'axios';
-const API_URL = '/api/'
 
 function NewAd() {
 

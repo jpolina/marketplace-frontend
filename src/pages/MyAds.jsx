@@ -6,7 +6,6 @@ import {FaPlusCircle} from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import axios from 'axios';
 import AdCard from '../components/AdCard'
-const API_URL = '/api/'
 
 function MyAds() {
     const [loading, setLoading] = useState(true)
@@ -23,7 +22,7 @@ function MyAds() {
     useEffect(()=> {
         const getAds = async () => {
             const id = JSON.parse(localStorage.getItem('seller'))._id
-            const response = await axios.get(API_URL + `seller/${id}`)
+            const response = await axios.get(`seller/${id}`)
             const ads = response.data.ads;
             setAds(ads)
             setLoading(false)

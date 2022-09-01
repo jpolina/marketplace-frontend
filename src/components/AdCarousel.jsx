@@ -8,8 +8,6 @@ import AdCard from './AdCard'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom'
 
-const API_URL = '/api/'
-
 
 function AdCarousel() {
     const [ads, setAds] = useState([])
@@ -18,7 +16,7 @@ function AdCarousel() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get(API_URL+'ads', {params: {'limit':9}}))
+            const response = (await axios.get(+'ads', {params: {'limit':9}}))
             setAds(response.data)
             setLoading(false)            
         }

@@ -6,7 +6,7 @@ const Home = () => {
     const navigate = useNavigate();
     return(
         <>
-            <div className='container d-flex welcome-container align-items-center flex-wrap'>
+            <div className='d-flex welcome-container align-items-center flex-wrap'>
                 <div className='my-4 welcome'>
                     <h1 className='welcome-text'>
                         <strong>Welcome to the Marketplace!</strong>

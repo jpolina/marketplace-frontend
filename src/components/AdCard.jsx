@@ -7,8 +7,8 @@ import AdForm from './AdForm';
 import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa'
 
 const image = require("../img/adpic.png")
-const API_URL = '/api/'
 
+axios.defaults.baseURL = 'https://marketplace10.herokuapp.com/api/';
 
 function AdCard(props) {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function AdCard(props) {
         }
     }
     try {
-        const response = await axios.delete(API_URL+`ad/${props.ad._id}`, config)
+        const response = await axios.delete(`ad/${props.ad._id}`, config)
         await toast.success(response.data.message)
         handleClose()
         setTimeout(()=> {

@@ -8,9 +8,6 @@ import CategoryForm from '../components/CategoryForm';
 // import '../css/grid.css'
 import { toast } from 'react-toastify';
 
-const API_URL = '/api/'
-
-
 function Category() {
     const {id} = useParams()
     const [loading, setLoading] = useState(true)
@@ -32,7 +29,7 @@ function Category() {
             }
         }
         try {
-            const response = await axios.delete(API_URL+`category/${id}`, config)
+            const response = await axios.delete(`category/${id}`, config)
             toast.success(response.data.message)
             setTimeout(()=>{
                 navigate('/categories')
@@ -46,7 +43,7 @@ function Category() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get(API_URL+'category/'+id))
+            const response = (await axios.get('category/'+id))
             setAds(response.data.ads)
             setCategory(response.data.category)
             setLoading(false);

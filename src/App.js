@@ -21,7 +21,7 @@ function App() {
     <>
       <Router>
           <Header />
-          <div className='container'>
+          <div className='large-container container'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/ads' element={<BrowseAds />} />

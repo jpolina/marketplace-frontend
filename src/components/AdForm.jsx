@@ -8,8 +8,6 @@ import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify';
 
 
-const API_URL = '/api/'
-
 function AdForm(props) {
     const conditions=['Brand new', 'Like new', 'Very good', 'Good', 'Acceptable', 'For parts/Not working'];
     const navigate = useNavigate()
@@ -55,7 +53,7 @@ function AdForm(props) {
     useEffect(()=> {
         const fetchData = async () => {
             try{
-                const response = await axios.get(API_URL+'categories')
+                const response = await axios.get('categories')
                 const names = response.data.categories.map((category)=>{
                     return category.name;
                 })
@@ -87,7 +85,7 @@ function AdForm(props) {
 
     const uploadImage = async () => {
         // get secure url from server
-        const {data} = await axios.get(API_URL+'/s3Url')
+        const {data} = await axios.get('/s3Url')
         const {url} = data;
 
         // post image directly to the s3 bucket
@@ -119,8 +117,8 @@ function AdForm(props) {
         try {
             let response;
             if (props.operation) {
-                response = await axios.put(API_URL+`ad/${props.ad._id}`, finalData, config)
-            } else response = await axios.post(API_URL+'ad', finalData, config);
+                response = await axios.put(`ad/${props.ad._id}`, finalData, config)
+            } else response = await axios.post('ad', finalData, config);
             toast.success(response.data.message)
             setTimeout(()=>{
                 navigate('/my-ads')

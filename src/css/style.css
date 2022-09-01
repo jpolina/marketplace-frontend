@@ -61,6 +61,14 @@
     justify-content: center;
 }
 
+.large-container {
+    margin-bottom: 70px;
+}
+
+.email-dropdown {
+    margin-left: auto;
+}
+
 @media (max-width:991px) {
     .welcome-container {
         margin-top: 0;
@@ -79,4 +87,11 @@
         width:100vw;
         height:450px
     }
+
+    .email-dropdown {
+        margin-left: 0;
+    }
 }
+
+
+

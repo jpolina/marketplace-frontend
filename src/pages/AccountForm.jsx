@@ -8,10 +8,6 @@ import {FaUser} from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import {FloatingLabel, Form} from 'react-bootstrap'
 
-
-const API_URL = '/api/'
-
-
 const AccountForm = () => {
     const [formData, setFormData] = useState({
         name:'',
@@ -36,7 +32,7 @@ const AccountForm = () => {
             }
         }
         try {
-            const response = await axios.delete(API_URL+`seller/${seller._id}`, config)
+            const response = await axios.delete(`seller/${seller._id}`, config)
             toast.success(response.data.message)
             toast.success('Account deleted successfully')
 
@@ -87,7 +83,7 @@ const AccountForm = () => {
                 }
             }
             try {
-              let response = await axios.put(API_URL+`seller/${seller._id}`, formData, config)
+              let response = await axios.put(`seller/${seller._id}`, formData, config)
               toast.success(response.data.message)
               const data = {
                 email,

@@ -6,8 +6,6 @@ import { toast } from 'react-toastify';
 
 import axios from 'axios'
 import Spinner from '../components/Spinner'
-const API_URL = '/api/'
-
 
 function Categories() {
     const [categories, setCategories] = useState([])
@@ -20,7 +18,7 @@ function Categories() {
 
     useEffect(()=> {
         const getCategories = async () => {
-            const response = await axios.get(API_URL+'categories')
+            const response = await axios.get('categories')
             setCategories(response.data.categories)
             setLoading(false)
         }

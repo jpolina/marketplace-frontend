@@ -2,12 +2,9 @@ import axios from 'axios';
 import {toast} from 'react-toastify'
 
 
-const API_URL = '/api/'
-
-
 // Register seller
 const register = async (sellerData) => {
-    const response = await axios.post(API_URL+'seller', sellerData)
+    const response = await axios.post('seller', sellerData)
 
     if(response.data) {
         localStorage.setItem('seller', JSON.stringify(response.data))
@@ -19,7 +16,7 @@ const register = async (sellerData) => {
 
 // Login seller
 const login = async (sellerData) => {
-    const response = await axios.post(API_URL+'login', sellerData)
+    const response = await axios.post('login', sellerData)
 
     if(response.data) {
         localStorage.setItem('seller', JSON.stringify(response.data))
