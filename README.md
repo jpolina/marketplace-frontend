@@ -1,5 +1,7 @@
-# marketplace-frontend
+# [marketplace-client](https://jpolina.github.io/marketplace-frontend/)
 This is a the front end for a generic classified ads website where users can browse ads by category, condition, location, and price. Also, users can create an account to post, edit, and delete their ads and create, edit and delete categories. This project was created using the MERN stack, Redux for user login, Mongoose, JWT, and AWS S3 for storing images.
+
+If the ads aren't loading, please try turning off adblockers.
 
 # Getting Started with Create React App and Redux
 
