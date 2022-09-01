@@ -16,7 +16,7 @@ function AdCarousel() {
 
     useEffect(()=> {
         const getAds = async () => {
-            const response = (await axios.get(+'ads', {params: {'limit':9}}))
+            const response = (await axios.get('ads', {params: {'limit':9}}))
             setAds(response.data)
             setLoading(false)            
         }
