@@ -3,7 +3,7 @@ This is a the front end for a generic classified ads website where users can bro
 
 If the ads aren't loading, please try turning off ad blockers.
 
-- [Link to the back end](https://github.com/jpolina/marketplace-api)
+- [Link to the back end repo](https://github.com/jpolina/marketplace-api)
 - [Deployment of front end](https://jpolina.github.io/marketplace-frontend)
 - [Deployment of api on Heroku](https://marketplace10.herokuapp.com/api)
 
