@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/marketplace-frontend/static/css/main.27cda8e0.css",
-    "main.js": "/marketplace-frontend/static/js/main.c6205ab8.js",
+    "main.js": "/marketplace-frontend/static/js/main.ff7f922d.js",
     "static/js/787.4d7c9385.chunk.js": "/marketplace-frontend/static/js/787.4d7c9385.chunk.js",
     "static/media/adpic.png": "/marketplace-frontend/static/media/adpic.0b3dbf715579af7b80ad.png",
     "index.html": "/marketplace-frontend/index.html",
     "main.27cda8e0.css.map": "/marketplace-frontend/static/css/main.27cda8e0.css.map",
-    "main.c6205ab8.js.map": "/marketplace-frontend/static/js/main.c6205ab8.js.map",
+    "main.ff7f922d.js.map": "/marketplace-frontend/static/js/main.ff7f922d.js.map",
     "787.4d7c9385.chunk.js.map": "/marketplace-frontend/static/js/787.4d7c9385.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.27cda8e0.css",
-    "static/js/main.c6205ab8.js"
+    "static/js/main.ff7f922d.js"
   ]
 }
