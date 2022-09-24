@@ -8,7 +8,7 @@ import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa'
 
 const image = require("../img/adpic.png")
 
-axios.defaults.baseURL = 'https://marketplace10.herokuapp.com/api/';
+axios.defaults.baseURL = 'https://marketplace.cyclic.app/api/';
 
 function AdCard(props) {
   const navigate = useNavigate();
