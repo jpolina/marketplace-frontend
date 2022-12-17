@@ -8,7 +8,7 @@ import { FaEnvelope, FaPhone, FaUser } from 'react-icons/fa'
 
 const image = require("../img/adpic.png")
 
-axios.defaults.baseURL = 'https://marketplace.cyclic.app/api/';
+axios.defaults.baseURL = 'https://marketplace10.herokuapp.com/api/';
 
 function AdCard(props) {
   const navigate = useNavigate();
@@ -94,16 +94,16 @@ function AdCard(props) {
                   <div className='mx-3 bg-light p-3 rounded shadow-sm'>
                     <p>Description: {props.ad.description}</p>
                     
-                    {props.ad.location!=undefined ? (<p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>):(<></>)}
+                    {/* {props.ad.location!=undefined ? (<p>Coordinates: {props.ad.location.coordinates[1]}, {props.ad.location.coordinates[0]}</p>):(<></>)} */}
                     {props.ad.address? (<p>Address: {props.ad.address}</p>):(<></>)}
 
                     <p>Condition: {props.ad.condition}</p>
                   </div>
                   <div className='mx-3 my-3 bg-light p-3 rounded shadow-sm'>
-                    <p><FaUser /> {props.ad.seller.name}</p>
-                    <p><FaEnvelope /> {props.ad.seller.email}</p>
+                    <p><FaUser className='icon'/> {props.ad.seller.name}</p>
+                    <p><FaEnvelope className='icon'/> {props.ad.seller.email}</p>
                     {props.ad.seller.phone!='false' ? (
-                    <p><FaPhone /> {props.ad.seller.phone}</p>)
+                    <p><FaPhone className='icon'/> {props.ad.seller.phone}</p>)
                       : (<></>)
                     }
                   </div>

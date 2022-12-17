@@ -127,7 +127,7 @@ function Ads() {
 
                         <Form.Group as={Row} className='bg-white my-3 mx-0 border rounded pt-3 pb-2 pe-4'>
                             <Col className='col-lg-2'>
-                                <Form.Label>Max distance: {distance} km</Form.Label>
+                                <Form.Label>Distance: 0-{distance} km</Form.Label>
                             </Col>
                             
                             <Col className='md-auto'>
